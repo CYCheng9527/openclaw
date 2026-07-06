@@ -363,7 +363,7 @@ describe("codex command", () => {
     expect(requests).toEqual([
       {
         method: "thread/resume",
-        params: { threadId: "thread-123", persistExtendedHistory: true },
+        params: { threadId: "thread-123" },
       },
     ]);
     await expect(fs.readFile(`${sessionFile}.codex-app-server.json`, "utf8")).resolves.toContain(

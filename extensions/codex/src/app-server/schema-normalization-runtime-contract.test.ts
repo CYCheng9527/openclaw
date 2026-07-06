@@ -99,7 +99,7 @@ describe("Codex app-server dynamic tool schema boundary contract", () => {
     vi.restoreAllMocks();
   });
 
-  it("passes prepared executable dynamic tool schemas through legacy thread start specs", async () => {
+  it("passes prepared executable dynamic tool schemas through canonical thread start specs", async () => {
     const sessionFile = path.join(tempDir, "session.jsonl");
     const workspaceDir = path.join(tempDir, "workspace");
     const parameterFreeTool = createParameterFreeTool("message");
@@ -132,6 +132,7 @@ describe("Codex app-server dynamic tool schema boundary contract", () => {
     const startPayload = payload as CodexThreadStartParams | undefined;
     expect(startPayload?.dynamicTools).toStrictEqual([
       {
+        type: "function",
         name: dynamicTool.name,
         description: dynamicTool.description,
         inputSchema: dynamicTool.inputSchema,
@@ -145,7 +146,6 @@ describe("Codex app-server dynamic tool schema boundary contract", () => {
     expect(startPayload?.sandbox).toBe("workspace-write");
     expect(startPayload?.serviceName).toBe("OpenClaw");
     expect(startPayload?.experimentalRawEvents).toBe(true);
-    expect(startPayload?.persistExtendedHistory).toBe(true);
     expect(typeof startPayload?.developerInstructions).toBe("string");
     expect(startPayload?.developerInstructions).toContain("OpenClaw");
   });

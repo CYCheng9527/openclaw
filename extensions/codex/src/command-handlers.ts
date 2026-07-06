@@ -849,7 +849,6 @@ async function resumeThread(
     CODEX_CONTROL_METHODS.resumeThread,
     {
       threadId: normalizedThreadId,
-      persistExtendedHistory: true,
     },
   );
   const thread = isJsonObject(response) && isJsonObject(response.thread) ? response.thread : {};
