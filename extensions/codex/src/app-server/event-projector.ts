@@ -2699,9 +2699,7 @@ function auditNativeToolTerminalStatus(item: CodexThreadItem): CodexNativeToolAu
   return "unknown";
 }
 
-function auditNativeToolUnfinishedStatus(
-  item: CodexThreadItem,
-): CodexNativeToolUnfinishedStatus {
+function auditNativeToolUnfinishedStatus(item: CodexThreadItem): CodexNativeToolUnfinishedStatus {
   // Search and image generation publish explicit terminal states. An enclosing
   // run outcome cannot substitute when that dependency-owned state is absent.
   return item.type === "webSearch" || item.type === "imageGeneration" ? "unknown" : "failed";
@@ -3125,4 +3123,3 @@ function readItem(value: JsonValue | undefined): CodexThreadItem | undefined {
   }
   return value as CodexThreadItem;
 }
-
